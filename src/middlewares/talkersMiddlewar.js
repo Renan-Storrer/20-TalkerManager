@@ -22,15 +22,12 @@ const verifyName = (req, res, next) => {
 
 const verifyAge = (req, res, next) => {
   const { age } = req.body;
-  const mensagem = 'O campo "age" deve ser um numero inteiro igual ou maior que 18';
+  const mensagem = 'O campo "age" deve ser um número inteiro igual ou maior que 18';
 
   if (!age) return res.status(400).json({ message: 'O campo "age" é obrigatório' });
-  if (typeof age !== 'number' || age < 18) {
+  if (!Number.isInteger(age) || age < 18) {
     return res.status(400).json({ message: mensagem });
   }
-  // if (age < 18) {
-  //   return res.status(400).json({ message: 'A pessoa palestrante deve ser maior de idade' });
-  // } 
   next();
 };
 
@@ -62,11 +59,11 @@ const verifyRate = (req, res, next) => {
   const { rate } = talk;
 
   if (rate === 0) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
+    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
   }
   if (!rate) return res.status(400).json({ message: 'O campo "rate" é obrigatório' });
   if (typeof rate !== 'number') {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
+    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
   }
 
   next();
@@ -77,10 +74,10 @@ const verifyRate2 = (req, res, next) => {
   const { rate } = talk;
 
   if (!Number.isInteger(rate)) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
+    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
   }
   if (rate < 1 || rate > 5) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
+    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
   }
 
   next();
