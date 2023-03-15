@@ -59,11 +59,15 @@ const verifyRate = (req, res, next) => {
   const { rate } = talk;
 
   if (rate === 0) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
+    return res.status(400).json(
+      { message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' },
+    );
   }
   if (!rate) return res.status(400).json({ message: 'O campo "rate" é obrigatório' });
   if (typeof rate !== 'number') {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
+    return res.status(400).json(
+      { message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' },
+    );
   }
 
   next();
@@ -74,10 +78,14 @@ const verifyRate2 = (req, res, next) => {
   const { rate } = talk;
 
   if (!Number.isInteger(rate)) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
+    return res.status(400).json(
+      { message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' },
+    );
   }
   if (rate < 1 || rate > 5) {
-    return res.status(400).json({ message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' });
+    return res.status(400).json(
+      { message: 'O campo "rate" deve ser um número inteiro entre 1 e 5' },
+    );
   }
 
   next();
