@@ -49,7 +49,7 @@ router.put('/talker/:id', verifyAuth, verifyName, verifyAge, verifyTalk,
     const talkers = await readFile(PATH);
     const findTalker = talkers.find((element) => Number(element.id) === Number(id));
 
-    if (!findTalker) return res.status(404).json({ message: 'Id not found' });
+    if (!findTalker) return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
 
     const index = talkers.findIndex((element) => Number(element.id) === Number(id));
     const editedTalker = { id, ...body };
